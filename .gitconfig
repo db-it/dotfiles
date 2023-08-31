@@ -1,0 +1,54 @@
+[user]
+	name = dbuettner
+	email = dbuettner@seibert-media.net
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[diff]
+	algorithm = patience
+	compactionHeuristic = true
+[color]
+	ui = true
+[color "status"]
+	added = green
+	changed = yellow
+	deleted = red
+	untracked = magenta
+[color "diff"]
+	meta = white bold
+	frag = cyan
+	old = red
+	new = green
+[difftool "sourcetree"]
+	cmd = /usr/local/bin/idea diff $LOCAL $PWD/$REMOTE
+	path = 
+[mergetool "sourcetree"]
+	cmd = /usr/local/bin/idea merge $PWD/$LOCAL $PWD/$REMOTE $PWD/$BASE $PWD/$MERGED
+	trustExitCode = true
+[interactive]
+	diffFilter = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+[pager]
+	log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+[alias]
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	lga1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lga2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = ! git lg1
+	lga = ! git lga1
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

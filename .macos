@@ -105,7 +105,7 @@ defaults write com.apple.menuextra.battery ShowPercent YES
 
 # configure clock in menu bar
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
-defaults write com.apple.menuextra.clock IsAnalog -bool false
+defaults write com.apple.menuextra.clock IsAnalog -bool true # show analog clock, because it's tinyer, when using itsycal for displaying the clock.
 defaults write com.apple.menuextra.clock DateFormat -string "d. MMM  HH:mm"
 
 

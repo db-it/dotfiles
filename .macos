@@ -432,6 +432,15 @@ defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
 # Use the system print dialog
 defaults write com.google.Chrome DisablePrintPreview -bool true
 
+# Disable telemetry of raspberry pi imager
+defaults write org.raspberrypi.Imager telemetry -bool false
+
+# Itsycal (https://www.mowglii.com/itsycal/)
+defaults write com.mowglii.ItsycalApp ClockFormat -string "d. MMM H:mm / w"
+defaults write com.mowglii.ItsycalApp HideIcon -bool true
+defaults write com.mowglii.ItsycalApp HighlightedDOWs -int 65
+defaults write com.mowglii.ItsycalApp SizePreference -float 1
+defaults write com.mowglii.ItsycalApp ShowWeeks -bool true
 
 
 ###############################################################################

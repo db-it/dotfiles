@@ -34,7 +34,7 @@ set --global tide_left_prompt_items private_mode pwd context shlvl git newline c
 
 set --global tide_right_prompt_separator_diff_color # no value means vertical separator
 set --global tide_right_prompt_prefix \ue0ba
-set --global tide_right_prompt_suffix \ue0bc
+set --global tide_right_prompt_suffix #\ue0bc
 set --global tide_right_prompt_items status cmd_duration context jobs direnv node virtual_env java gcloud aws docker distrobox toolbox nix_shell
 # set --global tide_right_prompt_items status cmd_duration context jobs direnv node virtual_env rustc java php pulumi chruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir
 

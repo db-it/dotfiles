@@ -31,3 +31,10 @@ set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
 # Plugin sudope
 # change key sequence of sudope to ALT+s
 # set -g sudope_sequence \u201A
+
+
+# nvm.fish 
+# set default packages (unset: set -e nvm_default_packages)
+set --universal nvm_default_packages npmrc ntl depcheck @forge/cli
+# set default node version  (unset: set -e nvm_default_version)
+set --universal nvm_default_version v20

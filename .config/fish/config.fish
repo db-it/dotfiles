@@ -26,15 +26,6 @@ set -gx LSCOLORS gxfxcxdxbxegedabagacad
 # Python: Add user site bin directory to PATH
 set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
 
-## gcloud
-# Set gcloud Python version. gcloud actually supports Python 3.5-3.8
-# set -gx CLOUDSDK_PYTHON /usr/local/bin/python3.8
-
-# enable shell command completion for gcloud
-# source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.fish.inc
-# add the Google Cloud SDK command line tools to your $PATH.
-# source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
-
 
 # ########## Plugin configuration ########## #
 # Plugin sudope

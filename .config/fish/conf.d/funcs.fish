@@ -1,15 +1,4 @@
 
-function cd --description "Change directory and run nvm use if a .nvmrc is present"
-    set cd_args ~
-    if count $argv > /dev/null
-        set cd_args $argv
-    end
-    builtin cd $cd_args
-    if test -e .nvmrc
-        nvm use
-    end
-end
-
 
 function wtf --description "Print which and --version output for the given command"
     for arg in $argv

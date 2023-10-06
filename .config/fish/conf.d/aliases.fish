@@ -1,11 +1,7 @@
-# General
-alias l "ls -ThAoF"
-alias lh "ls -ld .?*"
-
 alias cd..="cd .."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+# alias ..="cd .."
+# alias ...="cd ../.."
+# alias ....="cd ../../.."
 
 
 # Restart logitech daemon

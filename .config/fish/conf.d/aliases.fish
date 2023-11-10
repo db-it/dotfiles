@@ -15,8 +15,14 @@ alias firepm="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManag
 
 
 # Git
+
+# git delete branch force
+abbr --add gbd --position command git branch -D
+
+# git commit message
+abbr --add gc --position command --set-cursor="%" git commit -m '"%"'
+
 alias gst='git status'
-alias gc='git commit'
 alias gaa='git add -A'
 alias gap='git add -p'
 alias gco='git checkout'
@@ -26,3 +32,7 @@ alias gcf='git commit --fixup '
 alias gira='git rebase -i --autosquash '
 alias gd='git diff'
 alias gdc='git diff --cached'
+
+
+# docker
+abbr --add dr --position command docker run --rm -it 

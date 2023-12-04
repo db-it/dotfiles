@@ -17,8 +17,10 @@
 #   4. Store new defaults in file: `defaults read > after`
 #   5. Diff the files: `diff before after`
 #
-# @see: http://secrets.blacktree.com/?showapp=com.apple.finder
+# or use this resources:
+# @see: https://macos-defaults.com
 # @see: https://github.com/herrbischoff/awesome-macos-command-line
+# @see: https://marketmix.com/de/mac-osx-umfassende-liste-der-terminal-defaults-commands/
 #
 # @author Dominik Büttner (copied from Jeff Geerling: https://github.com/geerlingguy/dotfiles/blob/master/.osx)
 
@@ -97,6 +99,9 @@ defaults write com.apple.dock mru-spaces -bool false
 # How can I disable auto-switching desktops?
 #https://discussions.apple.com/thread/4995042
 
+
+## Menu bar
+
 # show Airplay in menu bar
 defaults write com.apple.airplay showInMenuBarIfPresent -bool true
 
@@ -107,6 +112,17 @@ defaults write com.apple.menuextra.battery ShowPercent YES
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
 defaults write com.apple.menuextra.clock IsAnalog -bool true # show analog clock, because it's tinyer, when using itsycal for displaying the clock.
 defaults write com.apple.menuextra.clock DateFormat -string "d. MMM  HH:mm"
+
+
+# configure menu bar items
+# If you want to enable additional items, run: defaults read ~/Library/Preferences/com.apple.systemuiserver.plist
+#
+# defaults write com.apple.systemuiserver menuExtras -array \
+# "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+# "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+# "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+# "/System/Library/CoreServices/Menu Extras/Displays.menu" \
+# "/System/Library/CoreServices/Menu Extras/Volume.menu"
 
 
 

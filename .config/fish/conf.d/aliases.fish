@@ -1,8 +1,4 @@
 alias cd..="cd .."
-# alias ..="cd .."
-# alias ...="cd ../.."
-# alias ....="cd ../../.."
-
 
 # Restart logitech daemon
 alias logirestart="launchctl stop com.logitech.manager.daemon"

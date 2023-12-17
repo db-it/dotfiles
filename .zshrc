@@ -8,6 +8,11 @@ if [ -f ~/.aliases ]; then
   source ~/.aliases
 fi
 
+alias l='ls -oh'
+alias ll='ls -ohAF'
+alias ll='ls -ohAFT'
+
+
 # Set architecture-specific brew share path.
 arch_name="$(uname -m)"
 if [ "${arch_name}" = "x86_64" ]; then

@@ -43,9 +43,10 @@ else
 fi
 
 # Backup MacOS defaults
-if [ ! -f /tmp/macos-defaults ]; then
-  defaults read > /tmp/macos-defaults
-  echo "Saved MacOS defaults to /tmp/macos-defaults."
+if [ ! -f ~/.provision/macos-defaults ]; then
+  mkdir -p ~/.provision
+  defaults read >~/.provision/macos-defaults
+  echo "Saved MacOS defaults to ~/.provision/macos-defaults"
 fi
 
 ###############################################################################
@@ -79,7 +80,7 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 # Restart automatically if the computer freezes
 if [[ "$RUN_AS_ROOT" = true ]]; then
-  systemsetup -setrestartfreeze on
+  sudo systemsetup -setrestartfreeze on
 fi
 
 # Disable smart quotes as they’re annoying when typing code
@@ -417,6 +418,8 @@ if [[ "$RUN_AS_ROOT" = true ]]; then
 
   # Restart spotlight
   killall mds > /dev/null 2>&1
+else
+  echo "Skipping Spotlight settings, because these settings require this script run as sudo."
 fi
 
 # Change indexing order and disable some search results

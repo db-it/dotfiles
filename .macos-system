@@ -38,3 +38,29 @@ sudo scutil --set ComputerName "${_arg_computername}"
 sudo scutil --set HostName "${_arg_computername}"
 sudo scutil --set LocalHostName "${_arg_computername}"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${_arg_computername}"
+
+
+# Restart automatically if the computer freezes
+sudo systemsetup -setrestartfreeze on
+
+
+###############################################################################
+# Energy                                                                      #
+###############################################################################
+
+# These pmset flags determine whether the settings apply to
+# battery ( -b )
+# charger (wall power) ( -c )
+# UPS ( -u )
+# all ( -a )
+#
+# Show system-wide power settings: pmset -g
+
+# Enable lid wakeup
+sudo pmset -a lidwake 1
+
+# Sleep the display after 10 minutes when on battery
+sudo pmset -b displaysleep 10
+
+# Sleep the display after 30 minutes when charging
+sudo pmset -c displaysleep 30

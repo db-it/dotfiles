@@ -2,7 +2,7 @@
 
 # Mac OS X configuration
 #
-# This configuration applies to the latest version of macOS (currently 11.3),
+# This configuration applies to the latest version of macOS (currently Sonoma 14),
 # and sets up preferences and configurations for all the built-in services and
 # apps. Third-party app config should be done elsewhere.
 #
@@ -23,24 +23,10 @@
 # @see: https://github.com/herrbischoff/awesome-macos-command-line
 # @see: https://marketmix.com/de/mac-osx-umfassende-liste-der-terminal-defaults-commands/
 #
-# @author Dominik Büttner (copied from Jeff Geerling: https://github.com/geerlingguy/dotfiles/blob/master/.osx)
+# @author Dominik Büttner
 
 # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
-# Ask for the administrator password upfront
-# DISABLED, because we wan't no prompts in automations
-# sudo -v
-
-# Warn that some commands will not be run if the script is not run as root.
-if [[ $EUID -ne 0 ]]; then
-  RUN_AS_ROOT=false
-  printf "Certain commands will not be run without sudo privileges. To run as root, run the same command prepended with 'sudo', for example: $ sudo $0\n\n" | fold -s -w 80
-else
-  RUN_AS_ROOT=true
-  # Update existing `sudo` timestamp until `.macos` has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-fi
 
 # Backup MacOS defaults
 if [ ! -f ~/.provision/macos-defaults ]; then
@@ -77,12 +63,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-
-
-# Restart automatically if the computer freezes
-if [[ "$RUN_AS_ROOT" = true ]]; then
-  sudo systemsetup -setrestartfreeze on
-fi
 
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
@@ -411,17 +391,17 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Spotlight                                                                   #
 ###############################################################################
 
-if [[ "$RUN_AS_ROOT" = true ]]; then
-  # Disable Spotlight indexing for any volume that gets mounted and has not yet
-  # been indexed before.
-  # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-  sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# if [[ "$RUN_AS_ROOT" = true ]]; then
+#   # Disable Spotlight indexing for any volume that gets mounted and has not yet
+#   # been indexed before.
+#   # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+#   sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 
-  # Restart spotlight
-  killall mds > /dev/null 2>&1
-else
-  echo "Skipping Spotlight settings, because these settings require this script run as sudo."
-fi
+#   # Restart spotlight
+#   killall mds > /dev/null 2>&1
+# else
+#   echo "Skipping Spotlight settings, because these settings require this script run as sudo."
+# fi
 
 # Change indexing order and disable some search results
 defaults write com.apple.spotlight orderedItems -array \
@@ -465,31 +445,6 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 # Sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
-
-###############################################################################
-# Energy                                                                      #
-###############################################################################
-
-# These pmset flags determine whether the settings apply to
-# battery ( -b )
-# charger (wall power) ( -c )
-# UPS ( -u )
-# all ( -a )
-#
-# Show system-wide power settings: pmset -g
-
-if [[ "$RUN_AS_ROOT" = true ]]; then
-  # Enable lid wakeup
-  sudo pmset -a lidwake 1
-
-  # Sleep the display after 10 minutes when on battery
-  sudo pmset -b displaysleep 10
-
-  # Sleep the display after 30 minutes when charging
-  sudo pmset -c displaysleep 30
-else
-  echo "Skipping power management settings, because these settings require this script run as sudo."
-fi
 
 
 

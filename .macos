@@ -312,6 +312,15 @@ defaults write com.apple.dock orientation -string "left"
 # maybe this setting no more exist:
 # defaults write com.apple.dock pinning -string middle
 
+# Autohide the Dock, default: false
+defaults write com.apple.dock autohide -bool true
+
+# Remove the Dock autohide animation, default: 0.5
+defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Remove the autohide delay, the Dock appears instantly, default: 0.2
+defaults write com.apple.dock autohide-delay -float 0
+
 # Set the icon size of Dock items to 64 pixels
 defaults write com.apple.dock tilesize -int 24
 

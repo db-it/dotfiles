@@ -498,6 +498,18 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 
 
+###############################################################################
+# Google Chrome & Google Chrome Canary                                        #
+###############################################################################
+
+# Enable two finger swipe for history navigation
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
+
+# Use the system print dialog
+defaults write com.google.Chrome DisablePrintPreview -bool true
+
+# Expand the print dialog by default
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
 
 ###############################################################################
@@ -508,18 +520,11 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # Disable promt on quit
 defaults write com.googlecode.iterm2 PromtOnQuit -bool false
 
-
-## Chrome
-# Enable two finger swipe for history navigation
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
-
-# Use the system print dialog
-defaults write com.google.Chrome DisablePrintPreview -bool true
-
+## Raspberry pi imager
 # Disable telemetry of raspberry pi imager
 defaults write org.raspberrypi.Imager telemetry -bool false
 
-# Itsycal (https://www.mowglii.com/itsycal/)
+## Itsycal (https://www.mowglii.com/itsycal/)
 defaults write com.mowglii.ItsycalApp ClockFormat -string "d. MMM H:mm / w"
 defaults write com.mowglii.ItsycalApp HideIcon -bool true
 defaults write com.mowglii.ItsycalApp HighlightedDOWs -int 65

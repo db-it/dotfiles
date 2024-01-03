@@ -19,10 +19,18 @@
 #
 # or use this resources:
 # @see: https://macos-defaults.com
+# @see: https://mosen.github.io/profiledocs/index.html
 # @see: https://github.com/herrbischoff/awesome-macos-command-line
 # @see: https://marketmix.com/de/mac-osx-umfassende-liste-der-terminal-defaults-commands/
 #
 # @author Dominik Büttner (copied from Jeff Geerling: https://github.com/geerlingguy/dotfiles/blob/master/.osx)
+
+# Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+# DISABLED, because we wan't no prompts in automations
+# sudo -v
 
 # Warn that some commands will not be run if the script is not run as root.
 if [[ $EUID -ne 0 ]]; then
@@ -35,9 +43,10 @@ else
 fi
 
 # Backup MacOS defaults
-defaults read > /tmp/macos-defaults
-echo "Saved MacOS defaults to /tmp/macos-defaults."
-
+if [ ! -f /tmp/macos-defaults ]; then
+  defaults read > /tmp/macos-defaults
+  echo "Saved MacOS defaults to /tmp/macos-defaults."
+fi
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -410,14 +419,26 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 # Energy                                                                      #
 ###############################################################################
 
-# Enable lid wakeup
-sudo pmset -a lidwake 1
+# These pmset flags determine whether the settings apply to
+# battery ( -b )
+# charger (wall power) ( -c )
+# UPS ( -u )
+# all ( -a )
+#
+# Show system-wide power settings: pmset -g
 
-# Sleep the display after 10 minutes when on battery
-sudo pmset -b displaysleep 10
+if [[ "$RUN_AS_ROOT" = true ]]; then
+  # Enable lid wakeup
+  sudo pmset -a lidwake 1
 
-# Sleep the display after 30 minutes when charging
-sudo pmset -c displaysleep 30
+  # Sleep the display after 10 minutes when on battery
+  sudo pmset -b displaysleep 10
+
+  # Sleep the display after 30 minutes when charging
+  sudo pmset -c displaysleep 30
+else
+  echo "Skipping power management settings, because these settings require this script run as sudo."
+fi
 
 
 

@@ -139,8 +139,9 @@ defaults write com.apple.menuextra.clock DateFormat -string "d. MMM  HH:mm"
 # Finder                                                                      #
 ###############################################################################
 
-# show status bar
+# show status & path bar
 defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
 
 # Set default view style
 # Cover Flow View: Flwv
@@ -153,9 +154,20 @@ defaults write com.apple.Finder FXPreferredViewStyle clmv
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Set Desktop as the default location for new Finder windows
+# For Home directory, use `PfHm` and `file://${HOME}/`
+# For Desktop, use `PfDe` and `file://${HOME}/Desktop/`
+# For Documents, use `PfDo` and `file://${HOME}/Documents/`
+# For Macintosh HD, use `PfVo` and `file:///`
 # For other paths, use `PfLo` and `file:///full/path/here/`
+# For Computer, use `PfCm`
 # defaults write com.apple.finder NewWindowTarget -string "PfDe"
 # defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+defaults write com.apple.finder NewWindowTarget -string "PfHo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+
+# Open folders in tabs instead of new windows
+# This is the actual default behaviour and the key FinderSpawnTab doesn't exist in settings.
+defaults write com.apple.finder FinderSpawnTab -bool true
 
 # show hidden files
 #defaults write com.apple.Finder AppleShowAllFiles YES
@@ -201,6 +213,26 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   OpenWith -bool true \
   Preview -bool false \
   Privileges -bool false
+
+
+### Finder Sidebar ###
+
+# Set sidebar icon size, default: 2
+# https://macos-defaults.com/finder/nstableviewdefaultsizemode.html
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
+
+### Finder toolbar ###
+
+# Show icon in the title bar before the path, default: false
+defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
+
+# Adjust toolbar title rollover delay, default: 0.5
+# https://macos-defaults.com/finder/nstoolbartitleviewrolloverdelay.html
+defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0.5
+
+
+### Other Finder settings ###
 
 # Always Show the User Library Folder
 chflags nohidden ~/Library/

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+_arg_computername=$1
+_arg_timezone=${2:-"Europe/Berlin"}
+
+
+if [[ -z "${_arg_computername}" ]]; then
+    echo "Error: Argument <computer name> is required." >&2
+    echo "Usage: $0 <computer name> [<timezone>]" >&2
+    exit 1
+fi
+
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+echo "sudo password is required in order to change system settings."
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+###############################################################################
+# System settins                                                              #
+###############################################################################
+
+# Set timezone
+echo "Setting timezone ${_arg_timezone}"
+sudo systemsetup -settimezone Europe/Berlin
+
+
+# Set computer name (as done via System Preferences → Sharing)
+echo "Setting computer and hostnames ${_arg_computername}"
+sudo scutil --set ComputerName "${_arg_computername}"
+sudo scutil --set HostName "${_arg_computername}"
+sudo scutil --set LocalHostName "${_arg_computername}"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${_arg_computername}"

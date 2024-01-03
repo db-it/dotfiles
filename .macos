@@ -45,8 +45,9 @@ fi
 # Backup MacOS defaults
 if [ ! -f ~/.provision/macos-defaults ]; then
   mkdir -p ~/.provision
-  defaults read >~/.provision/macos-defaults
-  echo "Saved MacOS defaults to ~/.provision/macos-defaults"
+  timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
+  defaults read >~/.provision/macos-defaults_${timestamp}
+  echo "Saved MacOS defaults to ~/.provision/macos-defaults_${timestamp}"
 fi
 
 ###############################################################################

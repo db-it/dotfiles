@@ -42,6 +42,13 @@ fi
 
 ## General
 
+# Set sidebar icon size (Finder, System settings), default: 2
+# https://macos-defaults.com/finder/nstableviewdefaultsizemode.html
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -49,11 +56,19 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable Creation of Metadata Files on USB Volumes
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
@@ -63,12 +78,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-
-# Disable smart quotes as they’re annoying when typing code
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Disable smart dashes as they’re annoying when typing code
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 
 # Set background to dark-grey color
@@ -80,9 +89,6 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Enable Dark mode
 # defaults write NSGlobalDomain AppleInterfaceStyle Dark
-
-# Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Disable sorting spaces/desktops by recent use
 defaults write com.apple.dock mru-spaces -bool false
@@ -197,13 +203,6 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   Privileges -bool false
 
 
-### Finder Sidebar ###
-
-# Set sidebar icon size, default: 2
-# https://macos-defaults.com/finder/nstableviewdefaultsizemode.html
-defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
-
-
 ### Finder toolbar ###
 
 # Show icon in the title bar before the path, default: false
@@ -250,7 +249,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Keyboard: Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain InitialKeyRepeat -int 25
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Disable auto-correct
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false

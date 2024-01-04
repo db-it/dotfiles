@@ -49,7 +49,7 @@ sudo systemsetup -settimezone Europe/Berlin
 echo ""
 
 # Set computer name (as done via System Preferences → Sharing)
-echo "Setting computer and hostnames ${_arg_computername}"
+echo "Setting computer and hostname to: ${_arg_computername}"
 sudo scutil --set ComputerName "${_arg_computername}"
 sudo scutil --set HostName "${_arg_computername}"
 sudo scutil --set LocalHostName "${_arg_computername}"
@@ -74,7 +74,7 @@ echo "Configure power management"
 # all ( -a )
 #
 # Show system-wide power settings: pmset -g
-
+set -x
 # Enable lid wakeup
 sudo pmset -a lidwake 1
 
@@ -83,5 +83,5 @@ sudo pmset -b displaysleep 10
 
 # Sleep the display after 30 minutes when charging
 sudo pmset -c displaysleep 30
-
+set +x
 echo ""

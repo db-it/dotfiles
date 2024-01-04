@@ -3,10 +3,21 @@
 _arg_computername=$1
 _arg_timezone=${2:-"Europe/Berlin"}
 
+VALID_HOSTNAME_REGEX=^[a-zA-Z0-9-]+$
+
 
 if [[ -z "${_arg_computername}" ]]; then
-    echo "Error: Argument <computer name> is required." >&2
-    echo "Usage: $0 <computer name> [<timezone>]" >&2
+    # echo "Error: Argument <computer name> is required." >&2
+    # echo "Usage: $0 <computer name> [<timezone>]" >&2
+    # exit 1
+    while [[ -z "${_arg_computername}" ]]; do
+        read -p "What should your computer (hostname) be named? (Allowed characters: a-z A-Z 0-9 and hyphens '-') " _arg_computername
+        echo ""
+    done
+fi
+
+if [[ ! "$_arg_computername" =~ $VALID_HOSTNAME_REGEX ]]; then
+    echo "Error: Computer name is invalid. Allowed are alphanumeric and hyphen (-) characters. Try again." >&2
     exit 1
 fi
 
@@ -18,7 +29,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # Prompt for sudo password, if the script is not run as root.
 if [[ $EUID -ne 0 ]]; then
     # Ask for the administrator password upfront
-    echo "sudo password is required in order to change system settings."
+    echo "You may be prompted for sudo password in order to change system settings."
     sudo -v
 fi
 

@@ -235,14 +235,49 @@ chflags nohidden ~/Library/
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Trackpad: Haptic feedback (light, silent clicking)
-defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+##### TRACKPAD #####
 
-# Trackpad: Enable Three finger window drag
+# Trackpad: Tracking speed, default: 0.6875
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.5
+
+# Trackpad: Haptic feedback (light=0, silent=1, clicking=2), default: 1
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
+
+# Trackpad: Enable Force Click and hapric feedback, default: true
+defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool true
+
+### Scroll & Zoom
+
+# Trackpad: Disable “natural” scrolling, default: true
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+
+# Trackpad: Pinch with two fingers, default: true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -bool true
+
+# Trackpad: Smart Zoom - double tap with two fingers, default: true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -bool true
+
+# Trackpad: Rotate - rotate with two fingers, default: true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
+
+### More Gestures
+
+# Trackpad: Enable Three finger window drag, default: disabled
+# System Settings > Accessibility > Pointer Control > Trackpad options > Dragging: Three Finger
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
-# Trackpad: Disable “natural” scrolling
-# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+# App Exposé - Swipe down with Three Fingers, default: unset (off)
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+
+
+##### MOUSE #####
+
+# Mouse: Tracking speed
+defaults write NSGlobalDomain com.apple.mouse.scaling -float 5
+
+
+##### KEYBOARD #####
 
 # Keyboard: Disable press-and-hold for keys in favor of key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false

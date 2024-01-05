@@ -150,7 +150,7 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # For Computer, use `PfCm`
 # defaults write com.apple.finder NewWindowTarget -string "PfDe"
 # defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
-defaults write com.apple.finder NewWindowTarget -string "PfHo"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Open folders in tabs instead of new windows

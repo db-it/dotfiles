@@ -531,6 +531,14 @@ defaults write com.mowglii.ItsycalApp HighlightedDOWs -int 65
 defaults write com.mowglii.ItsycalApp SizePreference -float 1
 defaults write com.mowglii.ItsycalApp ShowWeeks -bool true
 
+## Viscosity Open VPN
+# Set menu bar icons, default: Default
+defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
+
+# disable automatic update check, because updates are done with homebrew
+defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
+
+
 
 ###############################################################################
 # Kill/restart affected applications                                          #

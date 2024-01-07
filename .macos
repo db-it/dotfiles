@@ -539,23 +539,38 @@ defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
 defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
 
 ## Amphetamine ##
+# plist file is located here: ~/Library/Containers/com.if.Amphetamine/Data/Library/Preferences/com.if.Amphetamine.plist
+# exit amphetamine before writing settings
+killall Amphetamine
+sleep 1
+
 # Set menu bar icon, default: 0
 defaults write com.if.Amphetamine "Icon Style" -int 5
 
-# Add trigger when display is mirrored
-defaults write com.if.Amphetamine "Trigger Data" -array-add '{ \
-  DisplayCount = ""; \
-  DisplaysOperator = 4; \
-  Enabled = 1; \
-  IgnoreBuiltIn = 0; \
-  Name = "Main Display is mirrored"; \
-  "Screen Saver Delay" = 0; \
-  "Screen Saver Exceptions" = (); \
-  TypeID = 6; \
-  TypeIDs = ( \
-    6 \
-  ); \
-}'
+# enable triggers
+defaults write com.if.Amphetamine "Enable Triggers" -int 1
+
+# Add trigger: activate Amphetamine, when main display is mirrored
+# check if this trigger is already there
+AMPHETAMINE_TRIGGERS_MAIN_DISPLAY_MIRROR=$(defaults read com.if.Amphetamine "Trigger Data" |grep 'Name = "Main Display is mirrored";')
+
+if [[ -z "${AMPHETAMINE_TRIGGERS_MAIN_DISPLAY_MIRROR}" ]]; then
+    defaults write com.if.Amphetamine "Trigger Data" -array-add "$(cat <<EOF
+    {
+    DisplayCount = "";
+    DisplaysOperator = 4;
+    Enabled = 1;
+    IgnoreBuiltIn = 0;
+    Name = "Main Display is mirrored";
+    "Screen Saver Delay" = 0;
+    "Screen Saver Exceptions" = ();
+    TypeID = 6;
+    TypeIDs = (
+        6
+    );
+    }
+    EOF)"
+fi
 
 ###############################################################################
 # Kill/restart affected applications                                          #

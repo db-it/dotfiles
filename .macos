@@ -538,7 +538,24 @@ defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
 # disable automatic update check, because updates are done with homebrew
 defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
 
+## Amphetamine ##
+# Set menu bar icon, default: 0
+defaults write com.if.Amphetamine "Icon Style" -int 5
 
+# Add trigger when display is mirrored
+defaults write com.if.Amphetamine "Trigger Data" -array-add '{ \
+  DisplayCount = ""; \
+  DisplaysOperator = 4; \
+  Enabled = 1; \
+  IgnoreBuiltIn = 0; \
+  Name = "Main Display is mirrored"; \
+  "Screen Saver Delay" = 0; \
+  "Screen Saver Exceptions" = (); \
+  TypeID = 6; \
+  TypeIDs = ( \
+    6 \
+  ); \
+}'
 
 ###############################################################################
 # Kill/restart affected applications                                          #

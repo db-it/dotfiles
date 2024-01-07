@@ -538,7 +538,7 @@ defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
 # disable automatic update check, because updates are done with homebrew
 defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
 
-## Amphetamine ##
+## Amphetamine
 # plist file is located here: ~/Library/Containers/com.if.Amphetamine/Data/Library/Preferences/com.if.Amphetamine.plist
 # exit amphetamine before writing settings
 killall Amphetamine
@@ -569,8 +569,38 @@ if [[ -z "${AMPHETAMINE_TRIGGERS_MAIN_DISPLAY_MIRROR}" ]]; then
         6
     );
     }
-    EOF)"
+EOF
+)"
 fi
+
+
+## Sourcetree (not MAS version)
+
+# Check for updates, default: true
+defaults write com.torusknot.SourceTreeNotMAS SUEnableAutomaticChecks -bool false
+
+# Do not allow Sourcetree to update global Git config, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig -bool false
+
+# Set default folder, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS defaultFolder -string "/Users/$USER/development"
+
+# Enable option to use force push
+defaults write com.torusknot.SourceTreeNotMAS allowForcePush -bool true
+
+# Set Terminal App, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS terminalApp -int 2
+
+# Stage files on double click
+defaults write com.torusknot.SourceTreeNotMAS fileDoubleClickBehaviour -bool true
+
+# Show author date instead of commit date in log
+defaults write com.torusknot.SourceTreeNotMAS gitLogUseAuthorDate -bool true
+
+# Use rebase instead of merge  by default for tracked branches
+defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool true
+
+
 
 ###############################################################################
 # Kill/restart affected applications                                          #

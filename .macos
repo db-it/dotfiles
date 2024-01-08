@@ -103,7 +103,16 @@ defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.airplay showInMenuBarIfPresent -bool true
 
 # show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent YES
+# this command no more works on Mac Book Pro 2023:
+# defaults write com.apple.menuextra.battery ShowPercent YES
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+
+
+# show bluetooth in menu bar
+# this is what changes, when doing changes via ui, but running this command had no effect:
+# defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
+# this is what works. Don't know why:
+defaults -currentHost write com.apple.controlcenter Bluetooth -int 18
 
 # configure clock in menu bar
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
@@ -215,8 +224,11 @@ defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0.5
 
 ### Other Finder settings ###
 
-# Always Show the User Library Folder
+# Always show the User Library Folder
 chflags nohidden ~/Library/
+
+# Always show the /tmp folder
+chflags nohidden /tmp
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist

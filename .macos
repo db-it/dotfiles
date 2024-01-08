@@ -524,6 +524,10 @@ defaults write company.thebrowser.Browser autoArchiveTimeThreshold -string "thir
 # Restore windows from previous session when opening Arc, default: false
 defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
 
+# Show toolbar, default: false
+defaults write company.thebrowser.Browser topBarURLEnabled -bool true
+
+
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #

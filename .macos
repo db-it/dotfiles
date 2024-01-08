@@ -512,6 +512,20 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 
 ###############################################################################
+# Arc Browser                                                                 #
+###############################################################################
+
+# Warn before quitting, default: true
+defaults write company.thebrowser.Browser shouldWarnBeforeQuitting -bool true
+
+# Set auto archive time threshold to 30 days, default: twelveHours
+defaults write company.thebrowser.Browser autoArchiveTimeThreshold -string "thirtyDays"
+
+# Restore windows from previous session when opening Arc, default: false
+defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
+
+
+###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 

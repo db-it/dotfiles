@@ -573,6 +573,12 @@ EOF
 )"
 fi
 
+## Paste - Clipboard manager
+
+# Ignore copied stuff from password managers
+defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com.1password.1password"
+defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.sinew.Enpass-Desktop.App"
+
 
 ## Sourcetree (not MAS version)
 

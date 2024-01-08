@@ -298,6 +298,7 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 ###############################################################################
 
 # Set screenshots folder
+mkdir -p "${HOME}/Desktop/screenshots"
 defaults write com.apple.screencapture location -string "${HOME}/Desktop/screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)

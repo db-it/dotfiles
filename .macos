@@ -188,7 +188,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
 # Set the spring loading delay for directories (default 0.5)
-# defaults write NSGlobalDomain com.apple.springing.delay -float 0.5
+defaults write NSGlobalDomain com.apple.springing.delay -float 0.25
 
 # Keep folders on top when sorting by name
 # defaults write com.apple.finder _FXSortFoldersFirst -bool true

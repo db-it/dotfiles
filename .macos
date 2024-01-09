@@ -658,6 +658,18 @@ defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com
 defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.sinew.Enpass-Desktop.App"
 
 
+## BetterTouchTool
+
+# Don't show icon in menu bar, default: true
+defaults write com.hegenberg.BetterTouchTool showicon -bool false
+
+# Disable BTT's window snapping in favor of Loop.app, default: true
+defaults write com.hegenberg.BetterTouchTool windowSnappingEnabled -bool false
+
+# Invert scrolling for normal mice, default: false
+defaults write com.hegenberg.BetterTouchTool BTTReverseScrollingOnNormalMice -bool false
+
+
 ## Sourcetree (not MAS version)
 
 # Check for updates, default: true

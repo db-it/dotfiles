@@ -318,6 +318,13 @@ defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 # Mouse: Tracking speed
 defaults write NSGlobalDomain com.apple.mouse.scaling -float 5
 
+# Mouse: Scrolling speed, default: 0.3125
+# defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 0.3125
+
+# Set double-click speed threshold, default: 0.5
+# defaults write NSGlobalDomain com.apple.mouse.doubleClickThreshold -float 0.5
+
+
 
 ##### KEYBOARD #####
 

@@ -634,10 +634,9 @@ defaults write com.googlecode.iterm2 SuppressRestartAnnouncement -bool true
 # Set my personal profile as default
 defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "B3FE16C4-4AE1-4A68-A20C-42F783B8E1D0"
 
-
 # Prevent CSI 3 J from clearing scrollback history, default: Unspecified (key [PreventEscapeSequenceFromClearingHistory] not set)
-# Was set in previous iTerm environment. Trying what happens, if not set now.
-# defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false
+# Some apps delete the scrollback history during interactive configuration, e.g. tide configure
+defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false
 
 
 ## Raspberry pi imager

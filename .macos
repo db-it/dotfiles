@@ -598,6 +598,14 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
 
 ###############################################################################
+# Terminal                                                                    #
+###############################################################################
+
+# Set shell to zsh, default: "" (Login shell)
+default write com.apple.Terminal Shell -string "/bin/zsh"
+
+
+###############################################################################
 # Other applications                                                          #
 ###############################################################################
 

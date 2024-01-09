@@ -546,6 +546,9 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
+# Show Time machine icon in menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.TimeMachine" -bool true
+
 
 ###############################################################################
 # Photos                                                                      #
@@ -683,7 +686,7 @@ defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool tr
 
 
 ###############################################################################
-# Docker                                                          #
+# Docker                                                                      #
 ###############################################################################
 
 DOCKER_SETTINGS_FILE=~/Library/"Group Containers"/group.com.docker/settings.json

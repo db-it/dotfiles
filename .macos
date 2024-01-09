@@ -638,6 +638,49 @@ defaults write com.torusknot.SourceTreeNotMAS gitLogUseAuthorDate -bool true
 defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool true
 
 
+###############################################################################
+# Docker                                                          #
+###############################################################################
+
+DOCKER_SETTINGS_FILE=~/Library/"Group Containers"/group.com.docker/settings.json
+NEW_SETTINGS_FILE=/tmp/settings.json
+
+if [ -f "${DOCKER_SETTINGS_FILE}" ]; then
+	echo "Ensure Docker Desktop is quit, before changing settings."
+	killall "Docker Desktop" || true
+	sleep 5
+
+	if [ ! -f ~/.warp-dev-genisis/docker/settings.json ]; then
+		# Backup original settings
+		mkdir -p ~/.warp-dev-genisis/docker
+		cp "${DOCKER_SETTINGS_FILE}" ~/.warp-dev-genisis/docker/settings.json
+		echo "[$(date)] settings.json is a backup of the Docker default settings file: ${DOCKER_SETTINGS_FILE}" >~/.warp-dev-genisis/docker/README
+	fi
+
+	# Do not open Dashboard on startup
+	jq '.openUIOnStartupDisabled = true' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set virtual Disk to 120GB
+	jq '.diskSizeMiB = 114441' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set Memory limit to 10GB
+	jq '.memoryMiB = 10240' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Analytics
+	jq '.analyticsEnabled = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Survey Notifications
+	jq '.showSurveyNotifications = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+else
+	echo "Not changing Docker settings, because ${DOCKER_SETTINGS_FILE} not present."
+fi
+
+
 
 ###############################################################################
 # Kill/restart affected applications                                          #

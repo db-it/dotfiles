@@ -694,6 +694,9 @@ fi
 
 ## Paste - Clipboard manager
 
+# Disable Paste sounds
+defaults write com.wiheads.paste kPSTPreferencesEnableSoundEffects -bool false
+
 # Ignore copied stuff from password managers
 defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com.1password.1password"
 defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.sinew.Enpass-Desktop.App"

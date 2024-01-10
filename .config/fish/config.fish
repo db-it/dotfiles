@@ -15,6 +15,7 @@ set -gx LC_MESSAGES en_US.UTF-8
 set -gx LSCOLORS gxfxcxdxbxegedabagacad
 
 # Theme configuration
+fish_config theme choose d12r_dark
 # set -g theme_display_date no
 # set -g theme_date_format "+ %H:%M:%S"
 # set -g theme_show_exit_status yes

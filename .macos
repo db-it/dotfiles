@@ -711,7 +711,7 @@ defaults write com.hegenberg.BetterTouchTool showicon -bool false
 defaults write com.hegenberg.BetterTouchTool windowSnappingEnabled -bool false
 
 # Invert scrolling for normal mice, default: false
-defaults write com.hegenberg.BetterTouchTool BTTReverseScrollingOnNormalMice -bool false
+defaults write com.hegenberg.BetterTouchTool BTTReverseScrollingOnNormalMice -bool true
 
 
 ## Sourcetree (not MAS version)

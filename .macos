@@ -702,6 +702,38 @@ defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com
 defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.sinew.Enpass-Desktop.App"
 
 
+## Loop - Window manager
+
+# # Ensure Loop is closed
+# echo "Ensure Loop is quit, before changing settings."
+# killall Loop || true
+
+# Launch at Login, default: false
+defaults write com.MrKai77.Loop launchAtLogin -bool true
+
+# Hide until direction is chosen, default: false
+defaults write com.MrKai77.Loop hideUntilDirectionIsChosen -bool false
+
+# Set trigger keys: left control + left option, default: 63 (left fn)
+# Setting trigger keys actually only works via UI.
+# defaults write com.MrKai77.Loop trigger -array 58 59
+
+# Radial Menu > Corner radius, default: 48
+defaults write com.MrKai77.Loop radialMenuCornerRadius -int 30
+
+# Radial Menu > Thickness, default: 22
+# defaults write com.MrKai77.Loop radialMenuThickness -int 22
+
+# Preview > Show preview when looping, default: true
+defaults write com.MrKai77.Loop previewVisibility -bool false
+
+# Animation speed, default: 0
+# 0 => Smooth
+# 1 => Fast
+# 2 => Instant
+# defaults write com.MrKai77.Loop animationConfiguration -int 0
+
+
 ## BetterTouchTool
 
 # Don't show icon in menu bar, default: true

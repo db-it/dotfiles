@@ -773,6 +773,12 @@ defaults write com.torusknot.SourceTreeNotMAS gitLogUseAuthorDate -bool true
 defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool true
 
 
+## Banking4
+
+# Disable telemetry, default: "false"
+defaults write com.subsembly.Banking4 TelemetryDisabled -string "true"
+
+
 ###############################################################################
 # Docker                                                                      #
 ###############################################################################

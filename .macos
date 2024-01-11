@@ -501,6 +501,15 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #   echo "Skipping Spotlight settings, because these settings require this script run as sudo."
 # fi
 
+
+# Don't show Spotlight in menu bar
+# Running this command deletes the key in the property file,
+# but the icon is still present in the menu Bar, even after loggin out and in
+# defaults delete com.apple.Spotlight "NSStatusItem Visible Item-0"
+
+# Show Spotlight in menu bar
+# defaults write com.apple.Spotlight "NSStatusItem Visible Item-0" -bool true
+
 # Change indexing order and disable some search results
 defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -657,6 +666,11 @@ defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
 # disable automatic update check, because updates are done with homebrew
 defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
 
+
+## Kandji
+# Don't show Icon in menu bar until it's required
+defaults write io.kandji.Kandji HideUntilRequired -bool true
+
 ## Amphetamine
 # plist file is located here: ~/Library/Containers/com.if.Amphetamine/Data/Library/Preferences/com.if.Amphetamine.plist
 # exit amphetamine before writing settings
@@ -694,8 +708,11 @@ fi
 
 ## Paste - Clipboard manager
 
-# Disable Paste sounds
+# Disable Paste sounds, default: false
 defaults write com.wiheads.paste kPSTPreferencesEnableSoundEffects -bool false
+
+# Disable Menu bar icon, deafult: true
+defaults write com.wiheads.paste kPSTPreferencesShowMenuBarIcon -bool false
 
 # Ignore copied stuff from password managers
 defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com.1password.1password"
@@ -710,6 +727,9 @@ defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.
 
 # Launch at Login, default: false
 defaults write com.MrKai77.Loop launchAtLogin -bool true
+
+# Hide menu bar icon, default: false
+defaults write com.MrKai77.Loop hideMenuBarIcon -bool true
 
 # Hide until direction is chosen, default: false
 defaults write com.MrKai77.Loop hideUntilDirectionIsChosen -bool false

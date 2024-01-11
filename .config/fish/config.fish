@@ -21,6 +21,9 @@ fish_config theme choose d12r_dark
 # set -g theme_show_exit_status yes
 #set -g theme_color_scheme dark
 
+# Tide configuration
+tide_config_light
+
 
 # ########## Environment variables ########## #
 

@@ -555,7 +555,6 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 
-
 ###############################################################################
 # Time machine                                                                #
 ###############################################################################
@@ -576,6 +575,14 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 
 ###############################################################################
+# Terminal                                                                    #
+###############################################################################
+
+# Set shell to zsh, default: "" (Login shell)
+default write com.apple.Terminal Shell -string "/bin/zsh"
+
+
+###############################################################################
 # Arc Browser                                                                 #
 ###############################################################################
 
@@ -590,7 +597,6 @@ defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
 
 # Show toolbar, default: false
 defaults write company.thebrowser.Browser topBarURLEnabled -bool true
-
 
 
 ###############################################################################
@@ -608,11 +614,46 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
 
 ###############################################################################
-# Terminal                                                                    #
+# Docker                                                                      #
 ###############################################################################
 
-# Set shell to zsh, default: "" (Login shell)
-default write com.apple.Terminal Shell -string "/bin/zsh"
+DOCKER_SETTINGS_FILE=~/Library/"Group Containers"/group.com.docker/settings.json
+NEW_SETTINGS_FILE=/tmp/settings.json
+
+if [ -f "${DOCKER_SETTINGS_FILE}" ]; then
+	echo "Ensure Docker Desktop is quit, before changing settings."
+	killall "Docker Desktop" || true
+	sleep 5
+
+	if [ ! -f ~/.warp-dev-genisis/docker/settings.json ]; then
+		# Backup original settings
+		mkdir -p ~/.warp-dev-genisis/docker
+		cp "${DOCKER_SETTINGS_FILE}" ~/.warp-dev-genisis/docker/settings.json
+		echo "[$(date)] settings.json is a backup of the Docker default settings file: ${DOCKER_SETTINGS_FILE}" >~/.warp-dev-genisis/docker/README
+	fi
+
+	# Do not open Dashboard on startup
+	jq '.openUIOnStartupDisabled = true' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set virtual Disk to 120GB
+	jq '.diskSizeMiB = 114441' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set Memory limit to 10GB
+	jq '.memoryMiB = 10240' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Analytics
+	jq '.analyticsEnabled = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Survey Notifications
+	jq '.showSurveyNotifications = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+else
+	echo "Not changing Docker settings, because ${DOCKER_SETTINGS_FILE} not present."
+fi
 
 
 ###############################################################################
@@ -648,10 +689,6 @@ defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "B3FE16C4-4
 defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false
 
 
-## Raspberry pi imager
-# Disable telemetry of raspberry pi imager
-defaults write org.raspberrypi.Imager telemetry -bool false
-
 ## Itsycal (https://www.mowglii.com/itsycal/)
 defaults write com.mowglii.ItsycalApp ClockFormat -string "d. MMM H:mm / w"
 defaults write com.mowglii.ItsycalApp HideIcon -bool true
@@ -659,17 +696,6 @@ defaults write com.mowglii.ItsycalApp HighlightedDOWs -int 65
 defaults write com.mowglii.ItsycalApp SizePreference -float 1
 defaults write com.mowglii.ItsycalApp ShowWeeks -bool true
 
-## Viscosity Open VPN
-# Set menu bar icons, default: Default
-defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
-
-# disable automatic update check, because updates are done with homebrew
-defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
-
-
-## Kandji
-# Don't show Icon in menu bar until it's required
-defaults write io.kandji.Kandji HideUntilRequired -bool true
 
 ## Amphetamine
 # plist file is located here: ~/Library/Containers/com.if.Amphetamine/Data/Library/Preferences/com.if.Amphetamine.plist
@@ -793,53 +819,28 @@ defaults write com.torusknot.SourceTreeNotMAS gitLogUseAuthorDate -bool true
 defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool true
 
 
-## Banking4
+## Viscosity Open VPN
+# Set menu bar icons, default: Default
+defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
 
+# disable automatic update check, because updates are done with homebrew
+defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
+
+
+## Kandji
+# Don't show Icon in menu bar until it's required
+defaults write io.kandji.Kandji HideUntilRequired -bool true
+
+
+
+## Banking4
 # Disable telemetry, default: "false"
 defaults write com.subsembly.Banking4 TelemetryDisabled -string "true"
 
 
-###############################################################################
-# Docker                                                                      #
-###############################################################################
-
-DOCKER_SETTINGS_FILE=~/Library/"Group Containers"/group.com.docker/settings.json
-NEW_SETTINGS_FILE=/tmp/settings.json
-
-if [ -f "${DOCKER_SETTINGS_FILE}" ]; then
-	echo "Ensure Docker Desktop is quit, before changing settings."
-	killall "Docker Desktop" || true
-	sleep 5
-
-	if [ ! -f ~/.warp-dev-genisis/docker/settings.json ]; then
-		# Backup original settings
-		mkdir -p ~/.warp-dev-genisis/docker
-		cp "${DOCKER_SETTINGS_FILE}" ~/.warp-dev-genisis/docker/settings.json
-		echo "[$(date)] settings.json is a backup of the Docker default settings file: ${DOCKER_SETTINGS_FILE}" >~/.warp-dev-genisis/docker/README
-	fi
-
-	# Do not open Dashboard on startup
-	jq '.openUIOnStartupDisabled = true' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
-	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
-
-	# Set virtual Disk to 120GB
-	jq '.diskSizeMiB = 114441' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
-	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
-
-	# Set Memory limit to 10GB
-	jq '.memoryMiB = 10240' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
-	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
-
-	# Disable Analytics
-	jq '.analyticsEnabled = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
-	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
-
-	# Disable Survey Notifications
-	jq '.showSurveyNotifications = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
-	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
-else
-	echo "Not changing Docker settings, because ${DOCKER_SETTINGS_FILE} not present."
-fi
+## Raspberry pi imager
+# Disable telemetry of raspberry pi imager
+defaults write org.raspberrypi.Imager telemetry -bool false
 
 
 

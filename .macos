@@ -335,6 +335,9 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain InitialKeyRepeat -int 25
 defaults write NSGlobalDomain KeyRepeat -int 2
 
+# Do nothing, when pressing fn-key / globe-key, default: 2 (show emojis)
+defaults write com.apple.HIToolbox AppleFnUsageType -int 0
+
 # Disable auto-correct
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 

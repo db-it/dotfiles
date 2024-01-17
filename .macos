@@ -766,6 +766,9 @@ defaults write com.MrKai77.Loop hideMenuBarIcon -bool true
 # Hide until direction is chosen, default: false
 defaults write com.MrKai77.Loop hideUntilDirectionIsChosen -bool false
 
+# Resize frontmost window instead of window under cursor, default: true
+defaults write com.MrKai77.Loop resizeWindowUnderCursor -bool false
+
 # Set trigger keys: left control + left option, default: 63 (left fn)
 # Setting trigger keys actually only works via UI.
 # defaults write com.MrKai77.Loop trigger -array 58 59

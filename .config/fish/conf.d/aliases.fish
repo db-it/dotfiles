@@ -32,3 +32,4 @@ alias gdc='git diff --cached'
 
 # docker
 abbr --add drun --position command docker run --rm -it
+abbr --add drune --position command docker run --rm -it --entrypoint bash

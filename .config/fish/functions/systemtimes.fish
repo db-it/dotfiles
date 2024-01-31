@@ -6,6 +6,6 @@ function sleeptime --description 'Print sleeptime'
     sysctl -a |grep kern.sleeptime |cut -d ' ' -f 10-
 end
 
-function waketime --description 'Print waketime'
+function boottime --description 'Print boottime'
     sysctl -a |grep kern.boottime |cut -d ' ' -f 10-
 end

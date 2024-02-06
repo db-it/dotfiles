@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+
+###############################################################################
+# Docker                                                                      #
+###############################################################################
+
+DOCKER_SETTINGS_FILE=~/Library/"Group Containers"/group.com.docker/settings.json
+NEW_SETTINGS_FILE=/tmp/settings.json
+
+if [ -f "${DOCKER_SETTINGS_FILE}" ]; then
+	echo "Ensure Docker Desktop is quit, before changing settings."
+	killall "Docker Desktop" || true
+	sleep 5
+
+	if [ ! -f ~/.warp-dev-genisis/docker/settings.json ]; then
+		# Backup original settings
+		mkdir -p ~/.warp-dev-genisis/docker
+		cp "${DOCKER_SETTINGS_FILE}" ~/.warp-dev-genisis/docker/settings.json
+		echo "[$(date)] settings.json is a backup of the Docker default settings file: ${DOCKER_SETTINGS_FILE}" >~/.warp-dev-genisis/docker/README
+	fi
+
+	# Do not open Dashboard on startup
+	jq '.openUIOnStartupDisabled = true' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set virtual Disk to 120GB
+	jq '.diskSizeMiB = 114441' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Set Memory limit to 10GB
+	jq '.memoryMiB = 10240' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Analytics
+	jq '.analyticsEnabled = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+
+	# Disable Survey Notifications
+	jq '.showSurveyNotifications = false' "${DOCKER_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+	mv -f "${NEW_SETTINGS_FILE}" "${DOCKER_SETTINGS_FILE}"
+else
+	echo "Not changing Docker settings, because ${DOCKER_SETTINGS_FILE} not present."
+fi
+
+
+
+###############################################################################
+# iTerm2                                                                      #
+###############################################################################
+
+# Disable promt on quit
+defaults write com.googlecode.iterm2 PromtOnQuit -bool false
+
+# Disable tips of the day, default: false
+defaults write com.googlecode.iterm2 NoSyncTipsDisabled -bool true
+
+# Status bar position, default: 0
+defaults write com.googlecode.iterm2 StatusBarPosition -int 1
+
+# Apperance > set Theme to "minimal", default: 4 (Regular)
+defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption -int 5
+
+# Scroll whell sends arrow keys when in alternate screen mode, default: false
+# This enables scrolling through man pages.
+defaults write com.googlecode.iterm2 AlternateMouseScroll -bool true
+
+# Suppress the restart session offer
+defaults write com.googlecode.iterm2 SuppressRestartAnnouncement -bool true
+
+# Set default Profile, default: E52E9FF1-2CB9-4650-A334-78E6007976D9
+# Maybe the Profile UUID of the "Default" profile changes on a different system.
+# Import your profile before.
+# defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "YOUR PROFILE UUID HERE"
+# Set my personal profile as default
+defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "B3FE16C4-4AE1-4A68-A20C-42F783B8E1D0"
+
+# Prevent CSI 3 J from clearing scrollback history, default: Unspecified (key [PreventEscapeSequenceFromClearingHistory] not set)
+# Some apps delete the scrollback history during interactive configuration, e.g. tide configure
+defaults write com.googlecode.iterm2 PreventEscapeSequenceFromClearingHistory -bool false
+
+
+
+###############################################################################
+# Sourcetree (not MAS version)                                                #
+###############################################################################
+
+# Check for updates, default: true
+defaults write com.torusknot.SourceTreeNotMAS SUEnableAutomaticChecks -bool false
+
+# Do not allow Sourcetree to update global Git config, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig -bool false
+
+# Set default folder, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS defaultFolder -string "/Users/$USER/development"
+
+# Enable option to use force push
+defaults write com.torusknot.SourceTreeNotMAS allowForcePush -bool true
+
+# Set Terminal App, default: property unset
+defaults write com.torusknot.SourceTreeNotMAS terminalApp -int 2
+
+# Stage files on double click
+defaults write com.torusknot.SourceTreeNotMAS fileDoubleClickBehaviour -bool true
+
+# Show author date instead of commit date in log
+defaults write com.torusknot.SourceTreeNotMAS gitLogUseAuthorDate -bool true
+
+# Use rebase instead of merge  by default for tracked branches
+defaults write com.torusknot.SourceTreeNotMAS gitRebaseTrackingBranches -bool true

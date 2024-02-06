@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+
+###############################################################################
+# Banking4                                                                    #
+###############################################################################
+
+# Disable telemetry, default: "false"
+defaults write com.subsembly.Banking4 TelemetryDisabled -string "true"
+
+
+###############################################################################
+# Raspberry pi imager                                                         #
+###############################################################################
+
+# Disable telemetry of raspberry pi imager
+defaults write org.raspberrypi.Imager telemetry -bool false

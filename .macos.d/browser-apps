@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# Arc Browser                                                                 #
+###############################################################################
+
+# Warn before quitting, default: true
+defaults write company.thebrowser.Browser shouldWarnBeforeQuitting -bool true
+
+# Set auto archive time threshold to 30 days, default: twelveHours
+defaults write company.thebrowser.Browser autoArchiveTimeThreshold -string "thirtyDays"
+
+# Restore windows from previous session when opening Arc, default: false
+defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
+
+# Show toolbar, default: false
+defaults write company.thebrowser.Browser topBarURLEnabled -bool true
+
+
+###############################################################################
+# Google Chrome & Google Chrome Canary                                        #
+###############################################################################
+
+# Enable two finger swipe for history navigation
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
+
+# Use the system print dialog
+defaults write com.google.Chrome DisablePrintPreview -bool true
+
+# Expand the print dialog by default
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true

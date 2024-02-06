@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# Amphetamine                                                                 #
+###############################################################################
+
+# plist file is located here: ~/Library/Containers/com.if.Amphetamine/Data/Library/Preferences/com.if.Amphetamine.plist
+# exit amphetamine before writing settings
+killall Amphetamine
+sleep 1
+
+# Set menu bar icon, default: 0
+defaults write com.if.Amphetamine "Icon Style" -int 5
+
+# enable triggers
+defaults write com.if.Amphetamine "Enable Triggers" -int 1
+
+# Add trigger: activate Amphetamine, when main display is mirrored
+# check if this trigger is already there
+AMPHETAMINE_TRIGGERS_MAIN_DISPLAY_MIRROR=$(defaults read com.if.Amphetamine "Trigger Data" |grep 'Name = "Main Display is mirrored";')
+
+if [[ -z "${AMPHETAMINE_TRIGGERS_MAIN_DISPLAY_MIRROR}" ]]; then
+    defaults write com.if.Amphetamine "Trigger Data" -array-add "$(cat <<EOF
+    {
+    DisplayCount = "";
+    DisplaysOperator = 4;
+    Enabled = 1;
+    IgnoreBuiltIn = 0;
+    Name = "Main Display is mirrored";
+    "Screen Saver Delay" = 0;
+    "Screen Saver Exceptions" = ();
+    TypeID = 6;
+    TypeIDs = (
+        6
+    );
+    }
+EOF
+)"
+fi
+
+
+###############################################################################
+# BetterTouchTool                                                             #
+###############################################################################
+
+# Don't show icon in menu bar, default: true
+defaults write com.hegenberg.BetterTouchTool showicon -bool false
+
+# Disable BTT's window snapping in favor of Loop.app, default: true
+defaults write com.hegenberg.BetterTouchTool windowSnappingEnabled -bool false
+
+# Invert scrolling for normal mice, default: false
+defaults write com.hegenberg.BetterTouchTool BTTReverseScrollingOnNormalMice -bool true
+
+
+
+###############################################################################
+# Itsycal (https://www.mowglii.com/itsycal/)                                  #
+###############################################################################
+
+defaults write com.mowglii.ItsycalApp ClockFormat -string "d. MMM H:mm / w"
+defaults write com.mowglii.ItsycalApp HideIcon -bool true
+defaults write com.mowglii.ItsycalApp HighlightedDOWs -int 65
+defaults write com.mowglii.ItsycalApp SizePreference -float 1
+defaults write com.mowglii.ItsycalApp ShowWeeks -bool true
+
+
+
+###############################################################################
+# Loop - Window manager                                                       #
+###############################################################################
+
+# # Ensure Loop is closed
+# echo "Ensure Loop is quit, before changing settings."
+# killall Loop || true
+
+# Launch at Login, default: false
+defaults write com.MrKai77.Loop launchAtLogin -bool true
+
+# Hide menu bar icon, default: false
+defaults write com.MrKai77.Loop hideMenuBarIcon -bool true
+
+# Hide until direction is chosen, default: false
+defaults write com.MrKai77.Loop hideUntilDirectionIsChosen -bool false
+
+# Resize frontmost window instead of window under cursor, default: true
+defaults write com.MrKai77.Loop resizeWindowUnderCursor -bool false
+
+# Set trigger keys: left control + left option, default: 63 (left fn)
+# Setting trigger keys actually only works via UI.
+# defaults write com.MrKai77.Loop trigger -array 58 59
+
+# Radial Menu > Corner radius, default: 48
+defaults write com.MrKai77.Loop radialMenuCornerRadius -int 30
+
+# Radial Menu > Thickness, default: 22
+# defaults write com.MrKai77.Loop radialMenuThickness -int 22
+
+# Preview > Show preview when looping, default: true
+defaults write com.MrKai77.Loop previewVisibility -bool false
+
+# Animation speed, default: 0
+# 0 => Smooth
+# 1 => Fast
+# 2 => Instant
+# defaults write com.MrKai77.Loop animationConfiguration -int 0
+
+
+###############################################################################
+# Paste - Clipboard manager                                                   #
+###############################################################################
+
+# Disable Paste sounds, default: false
+defaults write com.wiheads.paste kPSTPreferencesEnableSoundEffects -bool false
+
+# Disable Menu bar icon, deafult: true
+defaults write com.wiheads.paste kPSTPreferencesShowMenuBarIcon -bool false
+
+# Ignore copied stuff from password managers
+defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "com.1password.1password"
+defaults write com.wiheads.paste kPSTPreferencesBlackAppsBundles -array-add "in.sinew.Enpass-Desktop.App"

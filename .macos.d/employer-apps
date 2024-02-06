@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# Viscosity Open VPN                                                          #
+###############################################################################
+
+# Set menu bar icons, default: Default
+defaults write com.viscosityvpn.Viscosity MenuBarIcons -string "Default Colored"
+
+# disable automatic update check, because updates are done with homebrew
+defaults write com.viscosityvpn.Viscosity SUEnableAutomaticChecks -bool false
+
+
+###############################################################################
+# Kandji                                                                      #
+###############################################################################
+
+# Don't show Icon in menu bar until it's required
+defaults write io.kandji.Kandji HideUntilRequired -bool true
+
+
+###############################################################################
+# 1Password 8                                                                 #
+###############################################################################
+
+ONEPASSWORD_SETTINGS_FILE=~/Library/"Group Containers"/2BUA8C4S2C.com.1password/Library/"Application Support"/1Password/Data/settings/settings.json
+NEW_SETTINGS_FILE=/tmp/settings.json
+
+if [ -f "${ONEPASSWORD_SETTINGS_FILE}" ]; then
+  echo "Ensure 1Password is quit, before changing settings."
+  killall "1Password" || true
+  sleep 1
+
+  if [ ! -f ~/.warp-dev-genisis/1password/settings.json ]; then
+    # Backup original settings
+    mkdir -p ~/.warp-dev-genisis/1password
+    cp "${ONEPASSWORD_SETTINGS_FILE}" ~/.warp-dev-genisis/1password/settings.json
+    echo "[$(date)] settings.json is a backup of the 1password default settings file: ${ONEPASSWORD_SETTINGS_FILE}" >~/.warp-dev-genisis/1password/README
+  fi
+
+  # Reveal password holding option key
+  jq '."security.holdToggleReveal"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: set compact density, default: comfortable
+  jq '."appearance.interfaceDensity"="compact"' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: set zoomlevel, default: 100
+  jq '."app.zoomLevel"=90' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: show categories in sidebar, default: false
+  jq '."sidebar.showCategories"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: show tags in sidebar
+  jq '."sidebar.showTags"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+else
+	echo "Not changing 1Password settings, because ${ONEPASSWORD_SETTINGS_FILE} not present."
+fi

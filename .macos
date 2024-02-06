@@ -585,7 +585,7 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 ###############################################################################
 
 # Set shell to zsh, default: "" (Login shell)
-default write com.apple.Terminal Shell -string "/bin/zsh"
+defaults write com.apple.Terminal Shell -string "/bin/zsh"
 
 
 ###############################################################################

@@ -852,6 +852,21 @@ if [ -f "${ONEPASSWORD_SETTINGS_FILE}" ]; then
   jq '."security.holdToggleReveal"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
   mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
 
+  # Appearance: set compact density, default: comfortable
+  jq '."appearance.interfaceDensity"="compact"' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: set zoomlevel, default: 100
+  jq '."app.zoomLevel"=90' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: show categories in sidebar, default: false
+  jq '."sidebar.showCategories"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
+
+  # Appearance: show tags in sidebar
+  jq '."sidebar.showTags"=true' "${ONEPASSWORD_SETTINGS_FILE}" >"${NEW_SETTINGS_FILE}"
+  mv -f "${NEW_SETTINGS_FILE}" "${ONEPASSWORD_SETTINGS_FILE}"
 else
 	echo "Not changing 1Password settings, because ${ONEPASSWORD_SETTINGS_FILE} not present."
 fi

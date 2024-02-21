@@ -22,7 +22,11 @@ fish_config theme choose d12r_dark
 #set -g theme_color_scheme dark
 
 # Tide configuration
-tide_config_light
+if ! set --query TIDE_STYLE
+    tide_config_light
+else if test "$TIDE_STYLE" = "slim"
+    tide_config_slim
+end
 
 
 # ########## Environment variables ########## #
@@ -37,7 +41,7 @@ set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
 # set -g sudope_sequence \u201A
 
 
-# nvm.fish 
+# nvm.fish
 # set default packages (unset: set -e nvm_default_packages)
 set --universal nvm_default_packages npmrc ntl depcheck @forge/cli
 # set default node version  (unset: set -e nvm_default_version)

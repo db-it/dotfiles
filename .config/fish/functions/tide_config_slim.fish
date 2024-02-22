@@ -74,6 +74,9 @@ function tide_config_slim --description "Set variables for a slim fish tide conf
     set --global tide_pwd_icon \uF07C
     set --global tide_pwd_icon_home \uF015
     set --global tide_cmd_duration_icon \uF252
+    set --global tide_homebrew_icon \UF1116
+    set --global tide_homebrew_color FF8324
+    set --global tide_homebrew_bg_color normal
 
     # remove time
     set --global tide_time_format

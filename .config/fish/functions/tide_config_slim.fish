@@ -50,7 +50,7 @@
 
 function tide_config_slim --description "Set variables for a slim fish tide config"
 
-    set --global tide_character_icon '><>'
+    set --global tide_character_icon '><> '
 
     # tide prompt configuration
     set --global tide_prompt_pad_items true

@@ -51,12 +51,12 @@ function tide_config_bold --description "Set variables for a bold fish tide conf
     set --global tide_left_prompt_separator_diff_color # no value means vertical separator
     set --global tide_left_prompt_prefix \ue0ba
     set --global tide_left_prompt_suffix \ue0b0
-    set --global tide_left_prompt_items private_mode pwd context shlvl git newline character
+    set --global tide_left_prompt_items private_mode pwd context shlvl git status newline character
 
     set --global tide_right_prompt_separator_diff_color # no value means vertical separator
     set --global tide_right_prompt_prefix \ue0ba
     set --global tide_right_prompt_suffix #\ue0bc
-    set --global tide_right_prompt_items status cmd_duration context jobs direnv node python java gcloud homebrew aws distrobox toolbox nix_shell
+    set --global tide_right_prompt_items cmd_duration context jobs direnv node python java gcloud homebrew aws distrobox toolbox nix_shell
     # tide_right_prompt_items for tide v5
     # set --global tide_right_prompt_items status cmd_duration context jobs direnv node virtual_env rustc java php pulumi chruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir
 

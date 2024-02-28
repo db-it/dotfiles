@@ -66,7 +66,7 @@ function tide_config_light --description "Set variables for a light fish tide co
     set --global tide_right_prompt_separator_diff_color # no value means vertical separator
     set --global tide_right_prompt_prefix
     set --global tide_right_prompt_suffix
-    set --global tide_right_prompt_items status cmd_duration context jobs direnv node python java gcloud homebrew aws distrobox toolbox nix_shell
+    set --global tide_right_prompt_items cmd_duration context jobs direnv node python java gcloud homebrew aws distrobox toolbox nix_shell
 
     # tide item configuration
     set --global tide_git_icon \ufb2b

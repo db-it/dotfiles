@@ -4,7 +4,7 @@ alias cd..="cd .."
 alias logirestart="launchctl stop com.logitech.manager.daemon"
 
 # Bamboo Specs deployment
-alias deployspecs="mvn test && mvn -Ppublish-specs -Dbamboo.url=(cat ~/.secrets/bamtwo_url) -Dbamboo.token='(cat ~/.secrets/bamtwo_pat)'"
+alias deployspecs="mvn test && mvn -Ppublish-specs -Dbamboo.url=(cat ~/.secrets/bamtwo_url) -Dbamboo.token=(cat ~/.secrets/bamtwo_pat)"
 
 # Firefox profile manager
 alias firepm="/Applications/Firefox.app/Contents/MacOS/firefox-bin -ProfileManager"

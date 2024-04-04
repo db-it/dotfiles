@@ -31,8 +31,9 @@ end
 
 # ########## Environment variables ########## #
 
+# NOTE: currently disabled
 # Python: Add user site bin directory to PATH
-set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
+# set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
 
 
 # ########## Plugin configuration ########## #

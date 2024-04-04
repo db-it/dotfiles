@@ -108,6 +108,10 @@ defaults write com.apple.dock mru-spaces -bool false
 
 ## Menu bar
 
+# reduce spacing for menu bar items, to prevent them hidden by the notch, default: keys are unset
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 8
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
+
 # show Airplay in menu bar
 defaults write com.apple.airplay showInMenuBarIfPresent -bool true
 
@@ -115,7 +119,6 @@ defaults write com.apple.airplay showInMenuBarIfPresent -bool true
 # this command no more works on Mac Book Pro 2023:
 # defaults write com.apple.menuextra.battery ShowPercent YES
 defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
-
 
 # show bluetooth in menu bar
 # this is what changes, when doing changes via ui, but running this command had no effect:
@@ -204,7 +207,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Enable spring loading for directories
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
-# Set the spring loading delay for directories (default 0.5)
+# Set the spring loading delay for directories, default: 0.5
 defaults write NSGlobalDomain com.apple.springing.delay -float 0.25
 
 # Keep folders on top when sorting by name

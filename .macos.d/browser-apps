@@ -29,3 +29,9 @@ defaults write com.google.Chrome DisablePrintPreview -bool true
 
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+
+# Set language (IETF language tag) for Chrome, default: unset
+# Details IETF language tag: https://en.wikipedia.org/wiki/IETF_language_tag
+# To remove this setting and revert to default state: defaults delete com.google.Chrome AppleLanguages
+#
+# defaults write com.google.Chrome AppleLanguages '(de-DE)'

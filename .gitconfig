@@ -1,6 +1,6 @@
 [user]
 	name = dbuettner
-	email = dbuettner@seibert-media.net
+	email = dominik.buettner@seibert.group
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
@@ -32,7 +32,7 @@
 	cmd = /usr/local/bin/idea diff $LOCAL $PWD/$REMOTE
 	; Changes made by SourceTree
 	; cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /usr/local/bin/idea merge $PWD/$LOCAL $PWD/$REMOTE $PWD/$BASE $PWD/$MERGED
 	; Changes made by SourceTree

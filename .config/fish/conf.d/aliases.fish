@@ -17,6 +17,8 @@ abbr --add gbd --position command git branch -D
 
 # git commit message
 abbr --add gc --position command --set-cursor="%" git commit -m '"%"'
+abbr --add gcf --position command --set-cursor="%" git commit --fixup '%'
+abbr --add gcf --position command --set-cursor="%" git rebase -i --autosquash '%'
 
 alias gst='git status'
 alias gaa='git add -A'
@@ -24,8 +26,8 @@ alias gap='git add -p'
 alias gco='git checkout'
 alias gb='git branch'
 alias gs='git stash'
-alias gcf='git commit --fixup '
-alias gira='git rebase -i --autosquash '
+# alias gcf='git commit --fixup '
+# alias gira='git rebase -i --autosquash '
 alias gd='git diff'
 alias gdc='git diff --cached'
 

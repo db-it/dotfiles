@@ -18,7 +18,7 @@ abbr --add gbd --position command git branch -D
 # git commit message
 abbr --add gc --position command --set-cursor="%" git commit -m '"%"'
 abbr --add gcf --position command --set-cursor="%" git commit --fixup '%'
-abbr --add gcf --position command --set-cursor="%" git rebase -i --autosquash '%'
+abbr --add gira --position command --set-cursor="%" git rebase -i --autosquash '%'
 
 alias gst='git status'
 alias gaa='git add -A'

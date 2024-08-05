@@ -35,3 +35,5 @@ alias gdc='git diff --cached'
 # docker
 abbr --add drun --position command docker run --rm -it
 abbr --add drune --position command docker run --rm -it --entrypoint bash
+abbr --add dex --position command --set-cursor="%" docker exec -it
+abbr --add dexb --position command --set-cursor="%" docker exec -it '%' bash

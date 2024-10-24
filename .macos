@@ -363,6 +363,11 @@ defaults write com.apple.HIToolbox AppleFnUsageType -int 0
 # defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 
+# Disable shortcut CMD + SHIFT + A, because it conflicts with an IntelliJ shortcut
+# DISABLED: The entry is added, but has no effect and the entry is not shown as deactivated in the system settings.
+# defaults write pbs NSServicesStatus -dict-add "com.apple.Terminal - Search man Page Index in Terminal - searchManPages" '{enabled_context_menu = 0; enabled_services_menu = 0; presentation_modes = {ContextMenu = 0; ServicesMenu = 0; }; }'
+
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################

@@ -4,6 +4,10 @@
 # @author dbuettner
 #
 
+# initialize command completion system
+autoload -Uz +X compinit && compinit
+
+
 if [ -f ~/.aliases ]; then
   source ~/.aliases
 fi

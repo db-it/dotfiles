@@ -1,4 +1,4 @@
-function npip --description 'pip defining an extra index'
+function npip --wraps pip --description 'pip defining an extra index'
   echo "Using python: $(pyenv which python3)"
   echo ""
   if test "$argv[1]" = "install"

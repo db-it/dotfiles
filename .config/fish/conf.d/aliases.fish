@@ -31,9 +31,20 @@ alias gs='git stash'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
+# JDK
+
+abbr --add setjdk17 --position command set -gx JAVA_HOME (/usr/libexec/java_home -v 17)
+
 
 # docker
 abbr --add drun --position command docker run --rm -it
+abbr --add dlog --position command docker logs -f -n 1000
 abbr --add drune --position command docker run --rm -it --entrypoint bash
 abbr --add dex --position command --set-cursor="%" docker exec -it
 abbr --add dexb --position command --set-cursor="%" docker exec -it '%' bash
+
+# homebrew
+
+abbr --add brucommon --position command brew upgrade --cask --greedy --no-quarantine 1password 1password-cli banking-4 bettertouchtool burp-suite dropbox enpass istat-menus google-cloud-sdk google-chrome loop maccy nextcloud viscosity
+abbr --add brubrowser --position command brew upgrade --cask --greedy --no-quarantine arc firefox
+abbr --add brudev --position command brew upgrade --cask --greedy --no-quarantine intellij-idea pycharm-ce

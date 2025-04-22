@@ -22,6 +22,7 @@ fish_config theme choose d12r_dark
 #set -g theme_color_scheme dark
 
 # Tide configuration
+# tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Few icons' --transient=Yes
 if ! set --query TIDE_STYLE
     tide_config_light
 else if test "$TIDE_STYLE" = "slim"
@@ -33,8 +34,11 @@ end
 
 # NOTE: currently disabled
 # Python: Add user site bin directory to PATH
-# set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
+set -gx PATH "$(python3 -m site --user-base)/bin" $PATH
 
+
+# Docker
+set -gx DOCKER_HOST "unix://$HOME/.docker/run/docker.sock"
 
 # ########## Plugin configuration ########## #
 # Plugin sudope

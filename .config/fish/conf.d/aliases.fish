@@ -45,6 +45,6 @@ abbr --add dexb --position command --set-cursor="%" docker exec -it '%' bash
 
 # homebrew
 
-abbr --add brucommon --position command brew upgrade --cask --greedy --no-quarantine 1password 1password-cli banking-4 bettertouchtool burp-suite chatgpt dropbox enpass istat-menus google-cloud-sdk google-chrome loop maccy nextcloud viscosity
+abbr --add brucommon --position command brew upgrade --cask --greedy --no-quarantine 1password 1password-cli banking-4 bettertouchtool burp-suite chatgpt dbeaver-community dropbox enpass gimp google-cloud-sdk google-chrome istat-menus loop maccy nextcloud raspberry-pi-imager syntax-highlight temurin@11 temurin@17 temurin@21 threema@beta viscosity
 abbr --add brubrowser --position command brew upgrade --cask --greedy --no-quarantine arc firefox
 abbr --add brudev --position command brew upgrade --cask --greedy --no-quarantine intellij-idea pycharm-ce

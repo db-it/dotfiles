@@ -12,6 +12,13 @@ if [ -f ~/.aliases ]; then
   source ~/.aliases
 fi
 
+# ENVIRONMENT
+
+# This line was relevant, for fixing the commit environment for SourceTree
+# when the repo uses pre-commits with tools such as nodejs, python, etc.
+# Without extending the PATH the pre-commit hook failed
+export PATH="/usr/local/bin:${PATH}"
+
 alias l='ls -oh'
 alias ll='ls -ohAF'
 alias ll='ls -ohAFT'

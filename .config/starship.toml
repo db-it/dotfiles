@@ -1,0 +1,37 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+command_timeout = 1000
+
+right_format = """
+$python\
+$nodejs\
+$java\
+${custom.homebrew}\
+"""
+
+[character]
+success_symbol = '[><>](bold green)'
+error_symbol = '[><>](bold red)'
+
+
+[gcloud]
+disabled = true
+
+[java]
+format = '[${symbol}(${version} )]($style)'
+style = 'fg:165'
+
+[nodejs]
+format = '[$symbol($version )]($style)'
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[custom.homebrew]
+command = '_homebrew_outdated'
+symbol = '🍺 '
+style = 'fg:208'
+format = '$symbol[$output]($style)'
+ignore_timeout = true
+when = ''' test "$HOME" = "$PWD" '''
